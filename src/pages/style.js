@@ -9,7 +9,6 @@ export const RecipiesStyled = styled.div`
     grid-gap: 1rem;
     transition: var(--transition03);
     grid-auto-rows: 1fr;
-    background: var(--page-background);
 
     @media (max-width: 640px) {
         grid-auto-rows: auto;
@@ -55,6 +54,7 @@ export const RecipePageStyled = styled.div`
         color: rgba(0, 0, 0, 0.5);
         display: flex;
         align-items: center;
+        color: rgba(235, 235, 235, 0.75);
 
         &:not(:last-of-type) {
             margin: 0 1.5rem 0 0;
@@ -78,6 +78,8 @@ export const RecipePageStyled = styled.div`
         }
         a {
             pointer-events: none;
+            color: rgba(235, 235, 235, 0.75);
+            font-weight: 500;
         }
     }
 
@@ -193,12 +195,13 @@ export const RecipePageStyled = styled.div`
             max-width: 40%;
             border: none;
             background: none;
-            border-bottom: 2px black solid;
+            border-bottom: 2px rgb(235, 235, 235) solid;
             transition: var(--transition03);
+            color: rgb(235, 235, 235);
 
             &.selected_unit {
-                color: rgba(2, 2, 192, 0.75);
-                border-bottom: 2px rgba(2, 2, 192, 0.75) solid;
+                color: #5a7fff;
+                border-bottom: 2px #5a7fff solid;
             }
         }
 

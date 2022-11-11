@@ -42,8 +42,8 @@ const Recipe: React.FC<RecipeType02> = ({ recipe }) => {
                         </span>
 
                         <span>
+                            <GiKnifeFork />
                             {recipe.servings}
-                            {/* <GiKnifeFork /> */}
                             {recipe.servings > 1 ? " servings" : " serving"}
                         </span>
                     </div>

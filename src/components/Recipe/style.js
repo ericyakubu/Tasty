@@ -12,6 +12,7 @@ export const RecipeStyled = styled.div`
         top: 0;
         left: 0;
         z-index: 1;
+        border-radius: 0.5rem;
     }
 
     .recipe {
@@ -20,9 +21,10 @@ export const RecipeStyled = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background-color: #f7f7f7;
+        background-color: var(--secondary);
         height: 100%;
         transition: var(--transition03);
+        border-radius: 0.5rem;
 
         :hover {
             transform: translate(-5px, -5px);
@@ -34,6 +36,7 @@ export const RecipeStyled = styled.div`
         min-height: 11rem;
         height: 11rem;
         object-fit: cover;
+        border-radius: 0.5rem;
     }
 
     .recipe_name {
@@ -75,6 +78,8 @@ export const RecipeStyled = styled.div`
         span {
             display: flex;
             align-items: center;
+            color: rgba(235, 235, 235, 0.75);
+            font-size: 0.85rem;
 
             svg {
                 font-size: 0.75rem;

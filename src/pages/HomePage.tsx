@@ -1,34 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Recipe from "../components/Recipe/Recipe";
 import Search from "../components/Search/Search";
 import { RecipeType } from "../types";
 import { RecipiesStyled } from "./style";
 import { Pagination } from "@mui/material";
+import SearchContext from "../contextAPI";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const test: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-let recipes: Array<RecipeType>;
+// let recipes: Array<RecipeType>;
 
 const HomePage = () => {
-    const [offset, setOffset] = useState<number>(0);
-    const getRecipes = async () => {
-        const check = localStorage.getItem("recipes");
+    const { recipes, setRecipes, cuisinesSelected, dietsSelected, mealTypesSelected, offset, setOffset } = useContext(SearchContext);
+    // const [recipes, setRecipes] = useState<RecipeType[]>([]);
 
-        if (check) {
-            recipes = JSON.parse(check);
+    const getRecipes = async () => {
+        if (cuisinesSelected.length >= 1 || dietsSelected.length >= 1 || mealTypesSelected.length >= 1) {
+            const api = await fetch(
+                `${process.env.REACT_APP_BASE_URL}/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}${cuisinesSelected.length >= 1 ? `&cuisine=${cuisinesSelected.map((e: string) => e.toLowerCase())}` : ``}${
+                    dietsSelected.length >= 1 ? `&diet=${dietsSelected.map((e: string) => e.toLowerCase())}` : ``
+                }${mealTypesSelected.length >= 1 ? `&type=${mealTypesSelected.map((e: string) => e.toLowerCase())}` : ``}&number=25${offset ? `&offset=${offset}` : ""}`
+            );
+            const data = await api.json();
+            setRecipes(data.recipes);
         } else {
             const api = await fetch(`${process.env.REACT_APP_BASE_URL}/random?apiKey=${process.env.REACT_APP_API_KEY}&number=25${offset ? `&offset=${offset}` : ""}`);
             const data = await api.json();
-
-            localStorage.setItem("recipes", JSON.stringify(data.recipes));
-            recipes = data.recipes;
+            setRecipes(data.recipes);
         }
     };
 
-    getRecipes();
+    useEffect(() => {
+        getRecipes();
+    }, []);
+
+    if (!recipes) {
+        return <CircularProgress />;
+    }
 
     return (
         <>
-            {/* <Search /> */}
+            <Search />
             <RecipiesStyled>
                 {recipes.map((rec: RecipeType) => (
                     <>
