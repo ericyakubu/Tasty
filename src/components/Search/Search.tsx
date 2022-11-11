@@ -30,26 +30,6 @@ const Search = () => {
         },
     };
 
-    const _handleCuisine = (e: SelectChangeEvent<typeof cuisinesSelected>) => {
-        const {
-            target: { value },
-        } = e;
-
-        setCuisinesSelected(
-            // On autofill we get a stringified value.
-            typeof value === "string" ? value.split(",") : value
-        );
-    };
-    const _handleDiet = (e: SelectChangeEvent<typeof dietsSelected>) => {
-        const {
-            target: { value },
-        } = e;
-
-        setDietsSelected(
-            // On autofill we get a stringified value.
-            typeof value === "string" ? value.split(",") : value
-        );
-    };
     const _handleMealType = (e: SelectChangeEvent<typeof dietsSelected>, type: string) => {
         const {
             target: { value },
@@ -57,22 +37,13 @@ const Search = () => {
 
         switch (type) {
             case "Cuisines":
-                setCuisinesSelected(
-                    // On autofill we get a stringified value.
-                    typeof value === "string" ? value.split(",") : value
-                );
+                setCuisinesSelected(typeof value === "string" ? value.split(",") : value);
                 break;
             case "Diets":
-                setDietsSelected(
-                    // On autofill we get a stringified value.
-                    typeof value === "string" ? value.split(",") : value
-                );
+                setDietsSelected(typeof value === "string" ? value.split(",") : value);
                 break;
             case "Meal Types":
-                setMealTypesSelected(
-                    // On autofill we get a stringified value.
-                    typeof value === "string" ? value.split(",") : value
-                );
+                setMealTypesSelected(typeof value === "string" ? value.split(",") : value);
                 break;
 
             default:
@@ -93,7 +64,7 @@ const Search = () => {
                     </div>
                     <div id="filterSearch">
                         {selectionName.map((selection, index) => (
-                            <FormControl sx={{ mt: 2, maxWidth: 300 }} className="formcontrol">
+                            <FormControl sx={{ mt: 2, maxWidth: 300 }} className="formcontrol" key={`filter ${index}`}>
                                 <InputLabel>{selection}</InputLabel>
                                 <Select
                                     multiple

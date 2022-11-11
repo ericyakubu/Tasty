@@ -8,11 +8,9 @@ import SearchContext from "../contextAPI";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const test: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-// let recipes: Array<RecipeType>;
 
 const HomePage = () => {
     const { recipes, setRecipes, cuisinesSelected, dietsSelected, mealTypesSelected, offset, setOffset } = useContext(SearchContext);
-    // const [recipes, setRecipes] = useState<RecipeType[]>([]);
 
     const getRecipes = async () => {
         if (cuisinesSelected.length >= 1 || dietsSelected.length >= 1 || mealTypesSelected.length >= 1) {
@@ -43,9 +41,7 @@ const HomePage = () => {
             <Search />
             <RecipiesStyled>
                 {recipes.map((rec: RecipeType) => (
-                    <>
-                        <Recipe recipe={rec} />
-                    </>
+                    <Recipe recipe={rec} key={rec.title} />
                 ))}
             </RecipiesStyled>
             <div id="pagination">

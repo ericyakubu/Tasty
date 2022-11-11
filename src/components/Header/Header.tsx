@@ -6,8 +6,6 @@ import { RiMenuFill } from "react-icons/ri";
 
 const Header = () => {
     const { setSearch } = useContext(SearchContext);
-    // document.body.classList.add("noscroll")
-    // console.log(document.body.clientWidth);
 
     const test = () => {
         document.body.classList.contains("noscroll") ? document.body.classList.remove("noscroll") : document.body.classList.add("noscroll");
@@ -16,7 +14,6 @@ const Header = () => {
     return (
         <HeaderStyled>
             <Link to="/">Tasty</Link>
-            {/* <span className="user">User</span> */}
             <button
                 onClick={() => {
                     setSearch((prev: boolean) => !prev);

@@ -13,22 +13,6 @@ const Recipe: React.FC<RecipeType02> = ({ recipe }) => {
                     <img className="recipe_img" src={recipe.image} alt={recipe.title} />
                 </Link>
                 <h2 className="recipe_name">{recipe.title}</h2>
-                {/* <div className="recipe_diets">
-                <button className="recipe_diets--btn">diets</button>
-                // <ul className="recipes_diets--list">
-                //         {recipe.diets.map((diet) => (
-                //             <li>{diet}</li>
-                //         ))}
-                //     </ul>
-                <div className="recipe_diets--list">
-                    {recipe.diets.map((diet, i) => (
-                        <span>
-                            {diet}
-                            {++i === recipe.diets.length ? "" : ","}
-                        </span>
-                    ))}
-                </div>
-            </div> */}
                 <div>
                     <p className="recipe_description" dangerouslySetInnerHTML={{ __html: recipe.summary }} />
                     <div className="recipe_stats">
